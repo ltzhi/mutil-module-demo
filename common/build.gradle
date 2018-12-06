@@ -1,0 +1,13 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    mavenCentral()
+}
+jar.enabled=true
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-configuration-processor')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    compile fileTree(dir: 'lib', include: '*.jar')
+}

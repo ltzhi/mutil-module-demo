@@ -1,0 +1,3 @@
+rootProject.name = 'mutil-module-demo'
+include('common')
+include('business')

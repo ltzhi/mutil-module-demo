@@ -1,0 +1,49 @@
+ext {
+    springBootVersion = '2.1.1.RELEASE'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    group 'com.simonluo'
+    version '1.0-SNAPSHOT'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    task allTask << {
+        println project.name
+    }
+
+
+    buildscript {
+        repositories {
+            mavenLocal()
+            maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+            maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin/' }
+            maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter/' }
+            mavenCentral()
+        }
+        dependencies {
+            classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        }
+    }
+}
+
+subprojects {
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/gradle-plugin/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter/' }
+        mavenCentral()
+    }
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}
